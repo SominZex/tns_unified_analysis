@@ -2,10 +2,8 @@ import streamlit as st
 import os
 import runpy
 
-# Set the page layout to wide
 st.set_page_config(page_title="Unified Analysis Dashboard", layout="wide")
 
-# Apply custom CSS to increase content width
 st.markdown(
     """
     <style>
@@ -19,24 +17,19 @@ st.markdown(
 
 st.markdown("<h1 style='text-align: center;'>Unified Analysis Dashboard</h1>", unsafe_allow_html=True)
 
-# Use a dropdown menu (selectbox) instead of buttons
 analysis_type = st.selectbox(
     "Choose an analysis type", 
     ["Select", "Product Analysis", "Category Analysis", "Store Analysis", "Brand Analysis"]
 )
 
-# Function to execute selected analysis
 def run_analysis(script_name):
     st.subheader(f"Running {script_name}")
     try:
-        # Path to the analysis script
         script_path = os.path.join(script_name, "main.py")
-        # Run the main script of the selected analysis
         runpy.run_path(script_path)
     except Exception as e:
         st.error(f"An error occurred while running {script_name} analysis: {e}")
 
-# Run corresponding analysis based on the selected option
 if analysis_type == "Product Analysis":
     run_analysis("product_analysis")
 
