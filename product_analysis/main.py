@@ -1,20 +1,20 @@
 import streamlit as st
 import pandas as pd
-from utils.data_loader import load_data
-from analysis.weekly_sales import weekly_sales_analysis
-from analysis.store_performance_analysis import store_performance_analysis
-from analysis.hourly_sales import hourly_sales_analysis
-from analysis.category_breakdown import category_breakdown_analysis
-from analysis.profit_margin_analysis import profit_margin_analysis
-from analysis.top_products import top_products_analysis
-from analysis.category_comparison import category_comparison_analysis
-from analysis.product_performance_analysis import product_performance_analysis
-from analysis.daily_sales_analysis import daily_sales_analysis
-from analysis.affinity_analysis import affinity_analysis
+from product_analysis.utils.data_loader import load_data
+from product_analysis.analysis.weekly_sales import weekly_sales_analysis
+from product_analysis.analysis.store_performance_analysis import store_performance_analysis
+from product_analysis.analysis.hourly_sales import hourly_sales_analysis
+from product_analysis.analysis.category_breakdown import category_breakdown_analysis
+from product_analysis.analysis.profit_margin_analysis import profit_margin_analysis
+from product_analysis.analysis.top_products import top_products_analysis
+from product_analysis.analysis.category_comparison import category_comparison_analysis
+from product_analysis.analysis.product_performance_analysis import product_performance_analysis
+from product_analysis.analysis.daily_sales_analysis import daily_sales_analysis
+from product_analysis.analysis.affinity_analysis import affinity_analysis
 
 
 # Page configuration
-st.set_page_config(page_title="Product Analysis Dashboard", layout="wide")
+# st.set_page_config(page_title="Product Analysis Dashboard", layout="wide")
 
 # Load and preprocess data
 @st.cache_data

@@ -1,9 +1,11 @@
 import streamlit as st
-import subprocess
 import os
+import runpy
 
-st.set_page_config(page_title="The New Shop:Data Factory", layout="wide")
+# Set the page layout to wide
+st.set_page_config(page_title="Unified Analysis Dashboard", layout="wide")
 
+# Apply custom CSS to increase content width
 st.markdown(
     """
     <style>
@@ -15,29 +17,37 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown("<h1 style='text-align: center;'>TNS Unified Analysis Dashboard</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>Unified Analysis Dashboard</h1>", unsafe_allow_html=True)
 
-
+# Use a dropdown menu (selectbox) instead of buttons
 analysis_type = st.selectbox(
     "Choose an analysis type", 
     ["Select", "Product Analysis", "Category Analysis", "Store Analysis", "Brand Analysis"]
 )
 
+# Function to execute selected analysis
+def run_analysis(script_name):
+    st.subheader(f"Running {script_name}")
+    try:
+        # Path to the analysis script
+        script_path = os.path.join(script_name, "main.py")
+        # Run the main script of the selected analysis
+        runpy.run_path(script_path)
+    except Exception as e:
+        st.error(f"An error occurred while running {script_name} analysis: {e}")
+
+# Run corresponding analysis based on the selected option
 if analysis_type == "Product Analysis":
-    st.subheader("Running Product Analysis (Switch the browser tab)")
-    subprocess.run(["streamlit", "run", os.path.join("product_analysis", "main.py")])
+    run_analysis("product_analysis")
 
 elif analysis_type == "Category Analysis":
-    st.subheader("Running Category Analysis (Switch the browser tab)")
-    subprocess.run(["streamlit", "run", os.path.join("category_analysis", "main.py")])
+    run_analysis("category_analysis")
 
 elif analysis_type == "Store Analysis":
-    st.subheader("Running Store Analysis (Switch the browser tab)")
-    subprocess.run(["streamlit", "run", os.path.join("store_analysis", "main.py")])
+    run_analysis("store_analysis")
 
 elif analysis_type == "Brand Analysis":
-    st.subheader("Running Brand Analysis (Switch the browser tab)")
-    subprocess.run(["streamlit", "run", os.path.join("brand_analysis", "main.py")])
+    run_analysis("brand_analysis")
 
 else:
-    st.warning("Select an analysis type to proceed.")
+    st.warning("Please select an analysis type to proceed.")

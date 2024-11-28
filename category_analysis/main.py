@@ -1,18 +1,18 @@
 import streamlit as st
 import pandas as pd
 from utils.data_loader import load_data
-from analysis.weekly_sales import weekly_sales_analysis
-from analysis.store_performance_analysis import store_performance_analysis
-from analysis.hourly_sales import hourly_sales_analysis
-from analysis.category_breakdown import category_breakdown_analysis
-from analysis.profit_margin_analysis import profit_margin_analysis
-from analysis.top_products import top_products_analysis
-from analysis.category_comparison import category_comparison_analysis
-from analysis.category_performance_analysis import category_performance_analysis
-from analysis.daily_sales_analysis import daily_sales_analysis
+from category_analysis.analysis.weekly_sales import weekly_sales_analysis
+from category_analysis.analysis.store_performance_analysis import store_performance_analysis
+from category_analysis.analysis.hourly_sales import hourly_sales_analysis
+from category_analysis.analysis.category_breakdown import category_breakdown_analysis
+from category_analysis.analysis.profit_margin_analysis import profit_margin_analysis
+from category_analysis.analysis.top_products import top_products_analysis
+from category_analysis.analysis.category_comparison import category_comparison_analysis
+from category_analysis.analysis.category_performance_analysis import category_performance_analysis
+from category_analysis.analysis.daily_sales_analysis import daily_sales_analysis
 
 # Page configuration
-st.set_page_config(page_title="Category Analysis Dashboard", layout="wide")
+# st.set_page_config(page_title="Category Analysis Dashboard", layout="wide")
 
 # Load and preprocess data
 @st.cache_data
