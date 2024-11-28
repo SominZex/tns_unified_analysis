@@ -19,7 +19,7 @@ st.markdown("<h1 style='text-align: center;'>Unified Analysis Dashboard</h1>", u
 
 analysis_type = st.selectbox(
     "Choose an analysis type", 
-    ["Select", "Product Analysis", "Category Analysis", "Store Analysis", "Brand Analysis"]
+    ["Product Analysis", "Category Analysis", "Store Analysis", "Brand Analysis"]
 )
 
 def run_analysis(script_name):
