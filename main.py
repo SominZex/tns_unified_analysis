@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import runpy
 
-st.set_page_config(page_title="Unified Analysis Dashboard", layout="wide")
+st.set_page_config(page_title="TNS Unified Analysis Dashboard", layout="wide")
 
 st.markdown(
     """
