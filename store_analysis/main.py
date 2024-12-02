@@ -12,8 +12,8 @@ from store_analysis.analysis.brand_performance_analysis import brand_performance
 from store_analysis.analysis.daily_sales_analysis import daily_sales_analysis
 
 # Function to clear up memory after each analysis
-def clear_memory():
-    gc.collect()
+# def clear_memory():
+#     gc.collect()
 
 # Optimize the data loading by caching it
 @st.cache_data
@@ -43,7 +43,6 @@ def filter_data_by_date(_data, start_date, end_date):
     mask = (_data['orderDate'] >= start_date) & (_data['orderDate'] <= end_date)
     date_filtered_data = _data[mask]
     
-    # Aggregated data for brand performance
     brand_aggregated = date_filtered_data.groupby('brandName').agg(
         total_sales=('sellingPrice', lambda x: (x * date_filtered_data.loc[x.index, 'quantity']).sum()),
         total_cost=('costPrice', lambda x: (x * date_filtered_data.loc[x.index, 'quantity']).sum()),
@@ -54,7 +53,6 @@ def filter_data_by_date(_data, start_date, end_date):
     brand_aggregated['profit_margin'] = (brand_aggregated['profit'] / brand_aggregated['total_sales']) * 100
     return date_filtered_data, brand_aggregated
 
-# Get top stores for selection
 def get_top_stores(data, n=10):
     return data['storeName'].value_counts().head(n).index.tolist()
 
@@ -129,8 +127,8 @@ if uploaded_file:
                 profit_margin_analysis(filtered_data)
 
                 # Clean up memory after heavy operations
-                del overall_analysis, date_filtered_data, brand_aggregated
-                clear_memory()
+                # del overall_analysis, date_filtered_data, brand_aggregated
+                # clear_memory()
 
             else:
                 st.warning("No data found for the selected criteria.")
