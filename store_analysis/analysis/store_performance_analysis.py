@@ -43,12 +43,12 @@ def store_performance_analysis(data, date_filtered_data, selected_stores):
     store_performance['total_selling_price'] = store_performance['total_selling_price'].fillna(0)
 
     # Calculate the contribution percentage of total_store_sales to total_selling_price
-    store_performance['contribution_percentage'] = (
-        (store_performance['total_selling_price'] / store_performance['total_store_sales']) * 100
-    )
+    # store_performance['contribution_percentage'] = (
+    #     (store_performance['total_selling_price'] / store_performance['total_store_sales']) * 100
+    # )
 
-    # Format contribution_percentage for better readability
-    store_performance['contribution_percentage'] = store_performance['contribution_percentage'].apply(lambda x: f"{x:.2f}%")
+    # # Format contribution_percentage for better readability
+    # store_performance['contribution_percentage'] = store_performance['contribution_percentage'].apply(lambda x: f"{x:.2f}%")
 
     # Format profit contribution for better readability
     overall_profit = store_performance['profit'].sum()
