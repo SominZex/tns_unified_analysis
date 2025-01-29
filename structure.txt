@@ -1,0 +1,19 @@
+unified_analysis/
+├── brand_analysis/
+│   ├── main.py
+│   └── other files...
+├── category_analysis/
+│   ├── main.py
+│   └── other files...
+├── store_analysis/
+│   ├── main.py
+│   └── other files...
+├── product_analysis/
+│   ├── main.py
+│   └── other files...
+├── utils/
+│   ├── data_loader.py
+├── main.py
+└── README.md
+└── requirements.txt
+└── structure.txt   
