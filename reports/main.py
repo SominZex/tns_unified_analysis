@@ -159,7 +159,21 @@ st.markdown("""
 @st.cache_data
 def load_data(uploaded_file):
     data = pd.read_csv(uploaded_file)
-    data['orderDate'] = pd.to_datetime(data['orderDate'], format="mixed", dayfirst=True, errors="coerce")
+
+    # Try parsing 'orderDate' explicitly in multiple formats
+    date_formats = ['%Y-%m-%d', '%d/%m/%Y', '%m/%d/%Y']
+    
+    for fmt in date_formats:
+        try:
+            data['orderDate'] = pd.to_datetime(data['orderDate'], format=fmt, errors='raise')
+            break  # Stop if parsing is successful
+        except ValueError:
+            continue
+    
+    # If all formats fail, fall back to automatic parsing
+    if not pd.api.types.is_datetime64_any_dtype(data['orderDate']):
+        data['orderDate'] = pd.to_datetime(data['orderDate'], dayfirst=True, errors='coerce')
+
     return data
 
 def parse_time(time_str):
