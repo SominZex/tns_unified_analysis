@@ -6,7 +6,6 @@ import uuid
 import time
 
 logo_path = "t.png"
-icon_path = "newshopofficial_cover.jpeg"
 
 # Setting the page configuration
 if os.path.exists(logo_path):
@@ -126,13 +125,9 @@ if st.session_state.session_id:
 
 if not st.session_state.username:
     # Centered login form (not full screen)
-    col1, col2, col3 = st.columns([1, 2, 1])  
+    col1, col2, col3 = st.columns([1, 2, 1])  # Create 3 columns to center the login form
     with col2:
-        # Center-align the logo and title
-        if os.path.exists(icon_path):  # Check if the image exists
-            st.image(icon_path, use_container_width=True, width=200)
         st.markdown("<h1 style='text-align: center;'>Login to Dashboard</h1>", unsafe_allow_html=True)
-
         username_input = st.text_input("Username", placeholder="Enter your username")
         password_input = st.text_input("Password", placeholder="Enter your password", type="password")
 

@@ -19,32 +19,25 @@ from product_analysis.analysis.affinity_analysis import affinity_analysis
 
 @st.cache_data
 def load_optimized_data_from_directory():
+    """
+    This function will load and cache the data from the directory.
+    It will return the processed data, or use the cached data if it exists.
+    """
     return load_data_from_directory() 
 
 def filter_data(_data, products, stores, start_date, end_date):
-    if start_date is not None:
-        start_date = pd.to_datetime(start_date, utc=True)
-    if end_date is not None:
-        end_date = pd.to_datetime(end_date, utc=True)
-
-    _data['orderDate'] = pd.to_datetime(_data['orderDate'], utc=True)
-
-    mask = (_data['orderDate'] >= start_date) & (_data['orderDate'] <= end_date) & \
+    # Do NOT re-parse orderDate; loader already parsed it with correct format
+    mask = (_data['orderDate'] >= pd.to_datetime(start_date)) & \
+           (_data['orderDate'] <= pd.to_datetime(end_date)) & \
            (_data['productName'].isin(products)) & (_data['storeName'].isin(stores))
     filtered_data = _data[mask]
-
     return filtered_data
 
+
 def filter_store_data(_data, stores, start_date, end_date):
-    if start_date is not None:
-        start_date = pd.to_datetime(start_date, utc=True)
-    if end_date is not None:
-        end_date = pd.to_datetime(end_date, utc=True)
-
-    _data['orderDate'] = pd.to_datetime(_data['orderDate'], utc=True)
-
-    # Filter by stores and date range, without filtering by products
-    mask = (_data['orderDate'] >= start_date) & (_data['orderDate'] <= end_date) & \
+    # Do NOT re-parse orderDate; loader already parsed it with correct format
+    mask = (_data['orderDate'] >= pd.to_datetime(start_date)) & \
+           (_data['orderDate'] <= pd.to_datetime(end_date)) & \
            (_data['storeName'].isin(stores))
     store_filtered_data = _data[mask]
     return store_filtered_data
@@ -66,9 +59,7 @@ with st.sidebar:
 
     if data is not None:
         min_date = data['orderDate'].min()
-        max_date = data['orderDate'].max() 
-
-        #FIRST5
+        max_date = data['orderDate'].max()
 
         col1, col2 = st.columns(2)
         with col1:
@@ -129,10 +120,12 @@ if data is not None:
     filtered_data = filter_data(data, selected_products, selected_stores, start_date, end_date)
     store_filtered_data = filter_store_data(data, selected_stores, start_date, end_date)
 
+
     try:
         with st.spinner('Analyzing data...'):
+
             affinity_data = filter_store_data(data, selected_stores, start_date, end_date)
-        
+
             if len(filtered_data) > 0:
                 weekly_sales_analysis(filtered_data, selected_product_sidebar, top_products)
                 hourly_sales_analysis(filtered_data, selected_products, selected_stores, selected_product_sidebar)
@@ -140,6 +133,8 @@ if data is not None:
                 st.markdown("<h1 style='text-align: center; color: green;'>Buying Pattern Analysis</h1>", unsafe_allow_html=True)
                 affinity_analysis(store_filtered_data, selected_product_sidebar, top_n=20)
 
+
+                
                 if selected_product_sidebar:
                     product_performance_analysis(filtered_data, selected_products, selected_stores)
                     daily_sales_analysis(filtered_data, selected_products, selected_stores)

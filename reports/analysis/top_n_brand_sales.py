@@ -5,21 +5,28 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 def top_n_brand_sales_analysis(store_data_filtered, all_data):
+    # Check if 'brandName' column exists in both DataFrames
+    if 'brandName' not in store_data_filtered.columns or 'brandName' not in all_data.columns:
+        st.error("The 'brandName' column is missing in the provided data. Please ensure the data contains the 'brandName' column.")
+        return
+
     # ---- Top N Brand Sales Analysis ----
-    # st.markdown("<br><br><br><br><br><br><br><br><br><br><br><br><br>", unsafe_allow_html=True)
     st.markdown("<h4 style='color: green; text-align: center;'>TOP-N BRAND ANALYSIS</h4>", unsafe_allow_html=True)
     st.markdown("---")
+    
     # Sidebar components
     st.sidebar.header("Top-N Brands Control Panel")
 
     # Get unique brand names for selection
     unique_brands = store_data_filtered['brandName'].unique()
+    
     # UI components to the sidebar
     n_brands = st.sidebar.slider("Select the number of top brands to analyze:", min_value=1, max_value=len(unique_brands), value=20)
     selected_brand_color = st.sidebar.selectbox("Select Color Scale for Brand Plot:", ['Viridis', 'Plasma', 'Inferno', 'Magma', 'Cividis'], key="brand_color_scale")
     show_data_labels_brand = st.sidebar.checkbox("Show Data Labels for Top N Brand Sales Analysis", value=True, key="show_data_labels_brand")
     chart_type = st.sidebar.selectbox("Select Chart Type:", ["Bar Chart", "Donut Chart", "Line Chart"], key="chart_type_selection")
 
+    # Group by brand and calculate total sales, quantity, and cost price
     brand_sales = store_data_filtered.groupby('brandName').agg(
         total_sales=('totalProductPrice', 'sum'),
         total_quantity=('quantity', 'sum'),
@@ -51,17 +58,16 @@ def top_n_brand_sales_analysis(store_data_filtered, all_data):
         quantity=('quantity', 'sum')
     ).reset_index()
 
+    # Merge with overall sales data
     top_n_brands = top_n_brands.merge(overall_brand_sales[['brandName', 'total_sales', 'quantity']], on='brandName', suffixes=('', '_overall'))
 
-    top_n_brands_overall = overall_brand_sales.nlargest(n_brands, 'total_sales')
-
     # Find missing top brands (present in overall top N but not in selected store)
+    top_n_brands_overall = overall_brand_sales.nlargest(n_brands, 'total_sales')
     missing_top_brands = top_n_brands_overall[
         ~top_n_brands_overall['brandName'].isin(store_data_filtered['brandName'])
     ][['brandName', 'total_sales', 'quantity']].copy()
 
-    top_n_brands = top_n_brands.merge(overall_brand_sales[['brandName', 'total_sales']], on='brandName', suffixes=('', '_overall'))
-
+    # Merge with company benchmark standards
     company_benchmark = pd.read_csv('./reports/company_bechmark/brand_sales_benchmark.csv')
     top_n_brands = top_n_brands.merge(company_benchmark, on="brandName", how="left")
 
@@ -81,8 +87,6 @@ def top_n_brand_sales_analysis(store_data_filtered, all_data):
 
     top_n_brands_display['total_sales'] = top_n_brands_display['total_sales'].apply(lambda x: f"{x:.2f}")
     top_n_brands_display['total_profit'] = top_n_brands_display['total_profit'].apply(lambda x: f"{x:.2f}")
-
-
 
     @st.cache_data
     def convert_df(df):
@@ -122,7 +126,6 @@ def top_n_brand_sales_analysis(store_data_filtered, all_data):
         # Update layout with fixed width and height
         fig_brand_bar.update_layout(width=chart_width, height=chart_height)
         st.plotly_chart(fig_brand_bar, use_container_width=False)
-
 
     elif chart_type == "Donut Chart":
         # Create Donut Chart for Top N Brand Sales

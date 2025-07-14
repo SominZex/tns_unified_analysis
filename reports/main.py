@@ -4,19 +4,15 @@ from reports.analysis.sales_by_category import sales_by_category_analysis
 from reports.analysis.time_slot_analysis import time_slot_analysis
 from reports.analysis.sales_per_channel import sales_per_channel_analysis
 from reports.analysis.top_n_brand_sales import top_n_brand_sales_analysis
-# from brand_availability import top_n_brand_availability_analysis
 from reports.analysis.top_n_products import top_n_product_analysis
-# from top_n_product_availability import top_n_product_availability_analysis
 from reports.analysis.fnb_performance import fnb_performance_analysis
 from reports.analysis.monetized_brands import analyze_monetized_brands
 from reports.analysis.counter_shelf_analysis import analyze_counter_shelf_products
-# from low_performing_brand import low_performing_brand_analysis
-# from low_performing_products import low_performing_product_analysis
 from reports.analysis.profit import display_profit_metrics
 from reports.analysis.grn_analysis import grn_analysis, upload_stock_data
 from reports.analysis.order_analysis import order_analysis
 from utils.data_loader import load_data_from_directory, parse_time_dynamic
-from PIL import Image
+from PIL import Image   
 import numpy as np
 
 st.markdown("""
@@ -149,12 +145,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
-#stpdf.init()
-
-# Title
-# st.markdown("<h1>🏭 TNS Data Factory (WIP)</h1>", unsafe_allow_html=True)
-
 # Use cache to store uploaded data
 @st.cache_data
 def load_data(uploaded_file):
@@ -201,12 +191,8 @@ if st.session_state.show_uploader:
     uploaded_file = st.file_uploader("Upload CSV file", type="csv")
     if uploaded_file is not None:
         # Load the uploaded data
-        st.session_state.data = pd.read_csv(uploaded_file)
+        st.session_state.data = load_data(uploaded_file)
         
-        # Parse the 'orderDate' column
-        if 'orderDate' in st.session_state.data.columns:
-            st.session_state.data['orderDate'] = pd.to_datetime(st.session_state.data['orderDate'], format="mixed", dayfirst=True, errors="coerce")
-
         # Parse the 'time' column with the new dynamic parsing
         if 'time' in st.session_state.data.columns:
             st.session_state.data['time'] = st.session_state.data['time'].apply(parse_time)
@@ -237,7 +223,6 @@ if st.session_state.data is not None:
                                  min_value=data['orderDate'].min().date(),
                                  max_value=data['orderDate'].max().date())
 
-  
     # Convert start_date and end_date to datetime64[ns] for comparison
     start_date = pd.to_datetime(start_date)
     end_date = pd.to_datetime(end_date)
@@ -285,7 +270,6 @@ if st.session_state.data is not None:
         selected_store_avg_sales = selected_store_total_revenue / len(store_data)
     else:
         selected_store_avg_sales = 0
-
 
     # Calculate the percentage difference from the overall average
     avg_difference_percentage = ((selected_store_avg_sales - overall_avg_sales) / overall_avg_sales) * 100 if overall_avg_sales > 0 else 0
