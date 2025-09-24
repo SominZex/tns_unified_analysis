@@ -6,7 +6,7 @@ def brand_performance_analysis(filtered_data, selected_brands, selected_stores, 
     st.markdown("<h1 style='text-align: center; color: green;'>Brand Performance Analysis</h1>", unsafe_allow_html=True)
 
     # Calculate total selling and cost prices for the filtered data
-    filtered_data['total_selling_price'] = filtered_data['sellingPrice'] * filtered_data['quantity']
+    filtered_data['total_selling_price'] = filtered_data['totalProductPrice'] * filtered_data['quantity']
     filtered_data['total_cost_price'] = filtered_data['costPrice'] * filtered_data['quantity']
 
     # Calculate overall total sales and profit based on the filtered data

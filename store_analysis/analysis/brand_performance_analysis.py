@@ -43,7 +43,7 @@ def brand_performance_analysis(filtered_data, date_filtered, selected_stores):
             total_selling_price=('total_selling_price', 'sum'),
             total_cost_price=('total_cost_price', 'sum'),
             total_quantity=('quantity', 'sum'),
-            category_count=('categoryName', 'nunique')
+            category_count=('categoryname', 'nunique')
         )
         .sort_values(by='total_selling_price', ascending=False)
     )

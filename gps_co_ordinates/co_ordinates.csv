@@ -1,90 +1,133 @@
-storeName,latitude,longitude
-Marlboro Sale Store Satpal,28.55029545,77.27258548
-Dehradun KSR Tower,30.31834004,78.0484172
-Gurugram AIPL Sec 62,28.40180673,77.084859
-Hyderabad Hitech City Avasa,17.44714281,78.38365081
-Hyderabad Madhapur,17.44759654,78.38415
-Haldwani Thandi Sadak,29.22958845,79.53169618
-Greater Noida Sec-16B,28.60765114,77.44219654
-Visakhapatnam Bhanu Nagar,17.74591191,83.32174651
-Udaipur Sector 4,24.56781247,73.7231779
-Zirakpur SCO 38,30.6399109,76.80276182
-Hyderabad Raidurg,17.44476782,78.37720723
-Dummy Store --- For Testing Only,,
-Adchini Aurobindo Marg,28.53828455,77.19814524
-Jaipur Ridhi Sidhi,26.8475003,75.76628159
-Mukherjee Nagar,28.71376381,77.21601717
-Assam Pirbi Market,25.85074687,93.42476089
-Jaipur Vidhyadhar Nagar,26.95928033,75.77800038
-Udaipur Sector 11,24.55459991,73.69194378
-Paschim Vihar,28.66982572,77.1061825
-Gurugram Sec 21,28.41103559,77.04112039
-Rohini Sector 16 (Gagan Batra),28.73858312,77.12455358
-Noida Sector 18,28.57145898,77.32425818
-Jaipur Rajapark,26.89786412,75.8218699
-Vijay Nagar,28.69221242,77.20096297
-Jaipur C Scheme,26.90539064,75.7941893
-Patna Aiims RD,25.56909168,85.0464199
-Palam Sadh Nagar,28.58644777,77.09110931
-Delhi Janakpuri B Block,28.63359215,77.08999248
-Jaipur Vaishali ,26.91461661,75.74004968
-Sonipat GT Road,28.95575783,77.09348994
-Gurugram Gwalpahadi,28.43195565,77.13836955
-Jaipur Gopalpura,26.87998836,75.76429135
-Uttam Nagar,28.62456162,77.06276329
-Jaipur Patrakar Colony,26.84104798,75.74368505
-Jaipur Aatish Market Metro,26.87990698,75.76441689
-East Of Kailash C 39,28.55977798,77.25698582
-Dwarka 1,28.61940525,77.03215085
-Ambala NDI Plaza,30.2613368,76.85434133
-Hanumangarh City Center,29.5962352,74.31133742
-Dilshad Garden,28.67854055,77.3141142
-Mathura Gurukripa Vilas,27.51985831,77.65758587
-Shakurpur ,28.6836778,77.13403183
-Chandigarh Sector 22,30.73072352,76.77454576
-Rohini Mangolpur,28.69952358,77.0953939
-Hyderabad MJ Center ,17.48731873,78.3587712
-Patiala City Center,30.34266247,76.3786282
-West Patel Nagar,28.64984544,77.1630995
-Laxmi Nagar,28.63759066,77.28468262
-Kalka Ji  Block G,28.54083977,77.25709797
-Kirti Nagar,28.65449875,77.1370122
-Mother Dairy Road,28.62728958,77.2796978
-Gwalior Patel Nagar,26.20893808,78.19135998
-Subhash Nagar,28.63959316,77.10367854
-Lucknow Omaxe ,26.8124909,80.99777501
-Udaipur New Bhopalpura,24.59969429,73.7061313
-Bhopal Chunabhatti,23.19992812,77.41661788
-Dwarka Mor ,28.61932768,77.03171874
-Jaipur Pratap Nagar,26.80896023,75.82604992
-Bareilly Rajendra Nagar,28.38455733,79.4333973
-Ajmer Neeti Marg,26.46893099,74.64041754
-Jabalpur Napier Town,23.16071157,79.9229145
-Panchkula Sec 11,30.68953291,76.85284544
-Janakpuri Block B,28.6332796,77.0901514
-Aligarh IT Palmcourt,27.90508789,78.08860406
-Chandigarh Sector 36,30.73420051,76.75318791
-Karol Bagh Metro Station,28.64397954,77.18882357
-Jasola IOCL,28.53798188,77.29007217
-Paharganj Multani Dhanda,28.6470144,77.21141663
-Jaipur Mansarovar,26.84629498,75.76594325
-Ashok Vihar Pocket D,28.69157409,77.17713844
-Dayanand Colony,28.5610535,77.24609008
-Ahmedabad SKY City,23.00564024,72.4679559
-Sant Nagar Burari ,28.74044168,77.19781921
-Saket PVR Anupam,28.52357146,77.207768
-Daryaganj Netaji Subhash Marg,28.64403134,77.2406213
-Rohini 7,28.71292635,77.11832052
-South Campus,28.5877145,77.16707087
-Pune Hadapsar,18.5235822,73.93270434
-Faridabad Sector 9,28.37615173,77.33307907
-Jaipur Jagatpura,26.80338011,75.8717712
-Rohini Sector 16 ,28.73851727,77.12457504
-Ho Marlboro,28.55025769,77.27261764
-Jaipur Ajmer Road,26.87684947,75.77403314
-Mohali Gmada Aerocity,30.63288116,76.76722536
-Gurugram ASF Insignia,28.40771385,77.04060541
-Udaipur UIT Circle ,24.59865767,73.68524428
-Chhatarpur CDR Chowk,28.50532668,77.17478438
-Mohali Sector 82,30.66105506,76.73529861
-Delhi Malviya Nagar Block C,28.53741246,77.21027747
+storeName,tier,state,latitude,longitude
+Ajmer Neeti Marg,Tier 2,Rajasthan,26.4499,74.6399
+Bathinda Adesh Hospital,Tier 2,Punjab,30.211,74.9455
+Bhopal Lakherapura,Tier 2,Madhya Pradesh,23.2599,77.4126
+Cantonment Road Chhatarpur,Tier 3,Madhya Pradesh,24.918,79.5941
+CDR Chowk Defence Colony Block A,Tier 1,Delhi,28.5706,77.2331
+Delhi Dwarka Sec 1,Tier 1,Delhi,28.5921,77.046
+Delhi Dwarka Sec 11,Tier 1,Delhi,28.5921,77.046
+Delhi Rajouri Garden,Tier 1,Delhi,28.6515,77.1283
+Delhi Shadi Khampur,Tier 1,Delhi,28.7041,77.1025
+Dharamshala Palampur HP,Tier 3,Himachal Pradesh,32.219,76.3234
+Dummy Store --- For Testing Only,Test,Test,0,0
+Dwarka 1,Tier 1,Delhi,28.5921,77.046
+Dwarka 12,Tier 1,Delhi,28.5921,77.046
+Dwarka Mor,Tier 1,Delhi,28.5921,77.046
+Faridabad Greenfield,Tier 1,Haryana,28.4089,77.3178
+Faridabad Sector 28,Tier 1,Haryana,28.4089,77.3178
+Faridabad Sector 81,Tier 1,Haryana,28.4089,77.3178
+Ghaziabad Raj Nagar,Tier 1,Uttar Pradesh,28.6692,77.4538
+Gurugram Platina Tower,Tier 1,Haryana,28.4595,77.0266
+Gurugram ROF,Tier 1,Haryana,28.4595,77.0266
+Gurugram Sector 22,Tier 1,Haryana,28.4595,77.0266
+Gurugram Sector 48,Tier 1,Haryana,28.4595,77.0266
+Gurugram South City,Tier 1,Haryana,28.4595,77.0266
+Gurugram Star Mall,Tier 1,Haryana,28.4595,77.0266
+Hanumangarh City Center,Tier 3,Rajasthan,29.5814,74.3222
+Hyderabad MJ Center,Tier 1,Telangana,17.385,78.4867
+Jaipur Gopalpura,Tier 2,Rajasthan,26.9124,75.7873
+Jaipur Rajapark,Tier 2,Rajasthan,26.9124,75.7873
+Jaipur Vaishali,Tier 2,Rajasthan,26.9124,75.7873
+Janakpuri Block A,Tier 1,Delhi,28.6219,77.0878
+Jodhpur Shiv Gauri Plaza,Tier 2,Rajasthan,26.2389,73.0243
+Kalka Ji Block B,Tier 1,Delhi,28.5355,77.2482
+Kalka Ji Block G,Tier 1,Delhi,28.5355,77.2482
+Kharar Kurali Ropar Road,Tier 2,Punjab,30.7333,76.6467
+Kharar Sector 126,Tier 2,Punjab,30.7333,76.6467
+Lucknow Aliganj,Tier 1,Uttar Pradesh,26.8467,80.9462
+Lucknow Omaxe,Tier 1,Uttar Pradesh,26.8467,80.9462
+Marlboro Sale Store,Test,Test,0,0
+Marlboro Sale Store Satpal,Test,Test,0,0
+Meerut Kidwai Nagar,Tier 2,Uttar Pradesh,28.9845,77.7064
+Meerut NH 58,Tier 2,Uttar Pradesh,28.9845,77.7064
+Mohali Sector 59,Tier 2,Punjab,30.7046,76.7179
+Mohali Sector 70,Tier 2,Punjab,30.7046,76.7179
+Nellore Gautham Nagar,Tier 2,Andhra Pradesh,14.4426,79.9865
+Noida Sector 90,Tier 1,Uttar Pradesh,28.5355,77.391
+Paharganj,Tier 1,Delhi,28.6448,77.2097
+Paharganj Multani Dhanda,Tier 1,Delhi,28.6448,77.2097
+Pune Hadapsar,Tier 1,Maharashtra,18.5204,73.8567
+Rohini Sector 16,Tier 1,Delhi,28.7041,77.1025
+Rohini Sector 16 (Gagan Batra),Tier 1,Delhi,28.7041,77.1025
+Rudrapur Prime Height,Tier 3,Uttarakhand,28.9845,79.4133
+Salesify Marketing Warehouse,Test,Test,0,0
+Sant Nagar Burari,Tier 1,Delhi,28.7041,77.1025
+Shakurpur,Tier 1,Delhi,28.6896,77.164
+storeName Testing Id for pro,Test,Test,0,0
+Uat Test,Test,Test,0,0
+Udaipur Bhuwana Road,Tier 2,Rajasthan,24.5854,73.7125
+Udaipur UIT Circle,Tier 2,Rajasthan,24.5854,73.7125
+Varanasi Mahmoorganj,Tier 2,Uttar Pradesh,25.3176,82.9739
+West Patel Nagar,Tier 1,Delhi,28.6562,77.164
+Yamuna Nagar Model Town,Tier 2,Haryana,30.129,77.2674
+Zirakpur PR 7,Tier 2,Punjab,30.6378,76.82
+Adchini Aurobindo Marg,Tier 1,Delhi,28.53829,77.19815
+Ahmedabad SKY City,Tier 1,Gujarat,23.00564,72.46796
+Aligarh IT Palmcourt,Tier 3,Uttar Pradesh,27.90509,78.0886
+Ambala NDI Plaza,Tier 2,Haryana,30.26134,76.85434
+Ashok Vihar Pocket D,Tier 1,Delhi,28.69157,77.17714
+Assam Pirbi Market,Tier 3,Assam,25.85075,93.42476
+Bareilly Rajendra Nagar,Tier 3,Uttar Pradesh,28.38456,79.4334
+Bhopal Chunabhatti,Tier 2,Madhya Pradesh,23.19993,77.41662
+Chandigarh Sector 22,Tier 2,Chandigarh,30.73072,76.77455
+Chandigarh Sector 36,Tier 2,Chandigarh,30.7342,76.75319
+Daryaganj Subhash Marg,Tier 1,Delhi,28.64403,77.24062
+Dayanand Colony,Tier 1,Delhi,28.56105,77.24609
+Dehradun KSR Tower,Tier 2,Uttarakhand,30.31834,78.04842
+Delhi Janakpuri B Block,Tier 1,Delhi,28.63359,77.08999
+Delhi Malviya Nagar Block C,Tier 1,Delhi,28.53741,77.21028
+Dilshad Garden,Tier 1,Delhi,28.67854,77.31411
+East Of Kailash C 39,Tier 1,Delhi,28.55978,77.25699
+Faridabad Sector 9,Tier 1,Haryana,28.37615,77.33308
+Greater Noida Sec-16B,Tier 1,Uttar Pradesh,28.60765,77.4422
+Gurugram AIPL Sec 62,Tier 1,Haryana,28.40181,77.08486
+Gurugram ASF Insignia,Tier 3,Haryana,28.40771,77.04061
+Gurugram Gwalpahadi,Tier 1,Haryana,28.43196,77.13837
+Gurugram Sec 21,Tier 1,Haryana,28.41104,77.04112
+Gwalior Patel Nagar,Tier 2,Madhya Pradesh,26.20894,78.19136
+Haldwani Thandi Sadak,Tier 3,Uttarakhand,29.22959,79.5317
+Ho Marlboro,Tier 1,Delhi,28.55026,77.27262
+Hyderabad Hitech City Avasa,Tier 1,Telangana,17.44714,78.38365
+Hyderabad Madhapur,Tier 1,Telangana,17.4476,78.38415
+Hyderabad Raidurg,Tier 1,Telangana,17.44477,78.37721
+Jabalpur Napier Town,Tier 3,Madhya Pradesh,23.16071,79.92292
+Jaipur Aatish Market Metro,Tier 1,Rajasthan,26.87991,75.76442
+Jaipur Ajmer Road,Tier 3,Rajasthan,26.87685,75.77403
+Jaipur C Scheme,Tier 1,Rajasthan,26.90539,75.79419
+Jaipur Jagatpura,Tier 1,Rajasthan,26.80338,75.87177
+Jaipur Malviya Nagar,Tier 1,Rajasthan,26.84658,75.80822
+Jaipur Mansarovar,Tier 1,Rajasthan,26.8463,75.76594
+Jaipur Patrakar Colony,Tier 1,Rajasthan,26.84105,75.74369
+Jaipur Pratap Nagar,Tier 1,Rajasthan,26.80896,75.82605
+Jaipur Ridhi Sidhi,Tier 1,Rajasthan,26.8475,75.76628
+Jaipur Vidhyadhar Nagar,Tier 1,Rajasthan,26.95928,75.778
+Janakpuri Block B,Tier 1,Delhi,28.63328,77.09015
+Jasola IOCL,Tier 1,Delhi,28.53798,77.29007
+Karol Bagh Metro Station,Tier 1,Delhi,28.64398,77.18882
+Kirti Nagar,Tier 1,Delhi,28.6545,77.13701
+Laxmi Nagar,Tier 1,Delhi,28.63759,77.28468
+Mathura Gurukripa Vilas,Tier 3,Uttar Pradesh,27.51986,77.65759
+Mohali Gmada Aerocity,Tier 2,Punjab,30.63288,76.76723
+Mohali Sector 82,Tier 2,Punjab,30.66106,76.7353
+Mother Dairy Road,Tier 1,Delhi,28.62729,77.2797
+Mukherjee Nagar,Tier 1,Delhi,28.71376,77.21602
+Noida Sector 18,Tier 1,Uttar Pradesh,28.57146,77.32426
+Palam Sadh Nagar,Tier 1,Delhi,28.58645,77.09111
+Panchkula Sec 11,Tier 2,Haryana,30.68953,76.85285
+Paschim Vihar,Tier 1,Delhi,28.66983,77.10618
+Patiala City Center,Tier 2,Punjab,30.34266,76.37863
+Patna Aiims RD,Tier 2,Bihar,25.56909,85.04642
+Rohini 7,Tier 1,Delhi,28.71293,77.11832
+Rohini Mangolpur,Tier 1,Delhi,28.69952,77.09539
+Rohini Sector 16,Tier 1,Delhi,28.73852,77.12458
+Saket PVR Anupam,Tier 1,Delhi,28.52357,77.20777
+Sonipat GT Road,Tier 2,Haryana,28.95576,77.09349
+South Campus,Tier 1,Delhi,28.58772,77.16707
+Subhash Nagar,Tier 1,Delhi,28.63959,77.10368
+Udaipur New Bhopalpura,Tier 3,Rajasthan,24.59969,73.70613
+Udaipur Sector 11,Tier 3,Rajasthan,24.5546,73.69194
+Udaipur Sector 4,Tier 3,Rajasthan,24.56781,73.72318
+Uttam Nagar,Tier 1,Delhi,28.62456,77.06276
+Vijay Nagar,Tier 2,Delhi,28.69221,77.20096
+Visakhapatnam Bhanu Nagar,Tier 3,Andhra Pradesh,17.74591,83.32175
+Zirakpur SCO 38,Tier 2,Punjab,30.63991,76.80276

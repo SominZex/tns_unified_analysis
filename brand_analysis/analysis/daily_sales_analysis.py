@@ -11,7 +11,7 @@ def daily_sales_analysis(filtered_data, selected_brands, selected_stores, select
     # Aggregate daily sales for each brand
     daily_sales_data['orderDate'] = pd.to_datetime(daily_sales_data['orderDate'])
     daily_sales = daily_sales_data.groupby([daily_sales_data['orderDate'].dt.date, 'brandName']).agg(
-        total_sales=('sellingPrice', lambda x: (x * daily_sales_data.loc[x.index, 'quantity']).sum()),
+        total_sales=('totalProductPrice', lambda x: (x * daily_sales_data.loc[x.index, 'quantity']).sum()),
         total_quantity=('quantity', 'sum'),
         total_cost=('costPrice', lambda x: (x * daily_sales_data.loc[x.index, 'quantity']).sum())
     ).reset_index()

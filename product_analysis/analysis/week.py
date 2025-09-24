@@ -46,7 +46,7 @@ def weekly_sales_analysis(data, selected_brands_sidebar, top_brands):
             total_selling_price=('total_selling_price', 'sum'),
             total_cost_price=('total_cost_price', 'sum'),
             total_quantity=('quantity', 'sum'),
-            category_count=('categoryName', 'nunique')
+            category_count=('categoryname', 'nunique')
         )
         .sort_values(by=['month', 'week_label'])
     )

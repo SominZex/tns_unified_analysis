@@ -2,84 +2,63 @@ import pandas as pd
 import logging
 from typing import Optional
 import time
+import psycopg2
 from sqlalchemy import create_engine
 from datetime import datetime
 
+# ───── Logging Setup ─────
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-PG_USER     = "user_name"
-PG_PASSWORD = "pw"
-PG_HOST     = "host_ip"
-PG_PORT     = "post_no"
-PG_DB       = "db_name"
-PG_TABLE    = "table"
+# ───── PostgreSQL Config ─────
+PG_HOST = 'host_ip'
+PG_PORT = 'post_no'
+PG_DB = 'db_name'
+PG_USER = 'user_name'
+PG_PASSWORD = 'pw'
+PG_TABLE = 'table'
 
-DATABASE_URL = f"postgresql+psycopg2://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DB}"
-
-REQUIRED_COLUMNS = [
-    "invoice", "productId", "orderDate", "time", "productName", "storeName",
-    "sellingPrice", "costPrice", "quantity", "totalProductPrice",
-    "brandName", "categoryName", "subCategoryOf",
-    "orderType", "customerNumber", "discountAmount"]
-
-
+# ───── Required Columns ─────
+REQUIRED_COLUMNS = {
+    "invoice", 'productId', 'orderDate', 'time', 'productName', 'storeName',
+    'sellingPrice', 'costPrice', 'quantity', 'totalProductPrice',
+    'brandName', 'categoryName', 'subCategoryOf',
+    'orderType', 'customerNumber', 'discountAmount'
+}
 
 def load_data_from_directory() -> pd.DataFrame:
-    logger.info("Connecting to PostgreSQL and loading latest month sales_data...")
-
+    logger.info("Connecting to PostgreSQL and loading data for the latest month...")
     start_time = time.time()
 
     try:
-        database_url = DATABASE_URL + "?sslmode=disable"
-
         engine = create_engine(
-            database_url,
-            pool_pre_ping=True,
-            pool_recycle=1800
+            f'postgresql+psycopg2://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DB}'
         )
 
-        latest_date_query = f"""SELECT MAX("orderDate") FROM {PG_TABLE};"""
+        # Step 1: Get latest orderDate
+        latest_date_query = f"SELECT MAX(orderDate) FROM {PG_TABLE};"
         latest_date = pd.read_sql(latest_date_query, engine).iloc[0, 0]
 
         if latest_date is None:
             raise ValueError("No data found in sales_data.")
-
         start_of_month = latest_date.replace(day=1)
-        logger.info(f"Latest order date: {latest_date}, filtering from: {start_of_month}")
 
-        columns_str = ", ".join(f'"{col}"' for col in REQUIRED_COLUMNS)
+        # Step 2: Query current month data
+        column_str = ", ".join(REQUIRED_COLUMNS)
         query = f"""
-            SELECT {columns_str}
+            SELECT {column_str}
             FROM {PG_TABLE}
-            WHERE "orderDate" >= '{start_of_month}'
+            WHERE orderDate >= '{start_of_month}'
         """
-        chunks = []
-        def safe_read_sql(query: str, engine, chunksize=50000, retries=3, delay=2):
-            for attempt in range(retries):
-                try:
-                    chunks = []
-                    for chunk in pd.read_sql(query, engine, chunksize=chunksize):
-                        chunks.append(chunk)
-                    return pd.concat(chunks, ignore_index=True)
-                except Exception as e:
-                    logger.warning(f"Attempt {attempt+1}/{retries} failed: {e}")
-                    last_exception = e
-                    time.sleep(delay)
-            logger.error(f"Final attempt failed with error: {last_exception}")
-            raise last_exception
-
-
-        # Use safe_read_sql
-        df = safe_read_sql(query, engine)
-
-
-        df.columns = df.columns.str.strip()
+        df = pd.read_sql(query, engine)
         logger.info(f"Loaded columns: {df.columns.tolist()}")
 
     except Exception as e:
         logger.error(f"PostgreSQL query failed: {e}")
         raise
+
+    # ───── Data Cleaning ─────
+    df.columns = df.columns.str.strip()
 
     if 'orderDate' in df.columns:
         df['orderDate'] = pd.to_datetime(df['orderDate'], errors='coerce').dt.tz_localize(None)
@@ -110,7 +89,6 @@ def load_data_from_directory() -> pd.DataFrame:
 
 
 def parse_time_dynamic(time_str) -> Optional[pd.Timestamp]:
-    """Parse time string in various formats into Python time objects."""
     if pd.isna(time_str):
         return None
     formats = ['%H:%M:%S.%fZ', '%H:%M:%S', '%H:%M']

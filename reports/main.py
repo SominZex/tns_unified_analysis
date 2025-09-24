@@ -277,7 +277,7 @@ if st.session_state.data is not None:
     # Create a DataFrame for store performance
     store_performance = pd.DataFrame({
         'storeName': [selected_store],
-        'averageTotalProductPrice': [selected_store_avg_sales],
+        'averagetotalProductPrice': [selected_store_avg_sales],
         'totalRevenue': [selected_store_total_revenue],
         'percentageDifference': [avg_difference_percentage],
         'overallAverage': [overall_avg_sales],
@@ -289,7 +289,7 @@ if st.session_state.data is not None:
     else:
         selected_store_percentage_contribution = 0
 
-    store_performance['performanceRating'] = store_performance['averageTotalProductPrice'].apply(performance_rating, overall_average=overall_avg_sales)
+    store_performance['performanceRating'] = store_performance['averagetotalProductPrice'].apply(performance_rating, overall_average=overall_avg_sales)
     # Create KPI Cards for key metrics
     st.markdown(f"<h2 style='color: green; text-align: center;'>{selected_store}</h2>", unsafe_allow_html=True)
     st.markdown(

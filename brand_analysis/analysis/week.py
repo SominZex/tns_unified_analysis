@@ -29,9 +29,9 @@ def weekly_sales_analysis(data, selected_brands_sidebar, top_brands):
     filtered_data['day'] = filtered_data['orderDate'].dt.day_name()
     filtered_data['month'] = filtered_data['orderDate'].dt.month_name()
 
-    # Calculate total selling price by multiplying sellingPrice with quantity
-    filtered_data['total_selling_price'] = filtered_data['sellingPrice'] * filtered_data['quantity']
-    filtered_data['total_cost_price'] = filtered_data['costPrice'] * filtered_data['quantity']
+    # Calculate total selling price by multiplying sellingprice with quantity
+    filtered_data['total_selling_price'] = filtered_data['sellingprice'] * filtered_data['quantity']
+    filtered_data['total_cost_price'] = filtered_data['costprice'] * filtered_data['quantity']
 
     # Aggregate sales data based on brand, month, and dynamic week label
     filtered_data['month_year'] = filtered_data['orderDate'].dt.to_period('M') 
@@ -46,7 +46,7 @@ def weekly_sales_analysis(data, selected_brands_sidebar, top_brands):
             total_selling_price=('total_selling_price', 'sum'),
             total_cost_price=('total_cost_price', 'sum'),
             total_quantity=('quantity', 'sum'),
-            category_count=('categoryName', 'nunique')
+            category_count=('categoryname', 'nunique')
         )
         .sort_values(by=['month', 'week_label'])
     )
@@ -61,7 +61,7 @@ def weekly_sales_analysis(data, selected_brands_sidebar, top_brands):
 
     # Calculate weekly sales growth percentage
     sales_by_week_growth = sales_by_week.copy()
-    week_columns = sales_by_week.columns[2:]  # All week columns
+    week_columns = sales_by_week.columns[2:] 
 
     # Calculate percentage growth for each week column relative to the previous week
     for i in range(1, len(week_columns)):
@@ -74,6 +74,7 @@ def weekly_sales_analysis(data, selected_brands_sidebar, top_brands):
     st.markdown("<h4 style='text-align: center; color: green;'>Week-wise Sales with Growth Percentage</h4>", unsafe_allow_html=True)
     st.dataframe(sales_by_week_growth)
 
+    
     # Sidebar options for chart customization
     st.sidebar.subheader("Weekly Sales Chart Settings")
     chart_type = st.sidebar.selectbox(

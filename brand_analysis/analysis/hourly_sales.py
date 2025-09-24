@@ -6,7 +6,7 @@ def hourly_sales_analysis(data, selected_brands, selected_brands_sidebar):
     st.markdown("<h1 style='text-align: center; color: green;'>Hourly Sales</h1>", unsafe_allow_html=True)
 
     # Filter data for selected brands from main.py input
-    filtered_data = data[data['brandName'].isin(selected_brands)]
+    filtered_data = data[data['brandname'].isin(selected_brands)]
     
     # Convert 'time' column to datetime if it's not already in datetime format
     filtered_data['time'] = pd.to_datetime(filtered_data['time'], errors='coerce')
@@ -20,7 +20,7 @@ def hourly_sales_analysis(data, selected_brands, selected_brands_sidebar):
     
     # Aggregating sales by each hour (creating 24 columns for each hour)
     hourly_sales = filtered_data.pivot_table(
-        index='brandName', 
+        index='brandname', 
         columns='hour', 
         values='total_selling_price', 
         aggfunc='sum', 
@@ -47,22 +47,22 @@ def hourly_sales_analysis(data, selected_brands, selected_brands_sidebar):
         )
         
         # Reshaping the data for plotting (long format)
-        hourly_sales_long = hourly_sales.melt(id_vars='brandName', 
+        hourly_sales_long = hourly_sales.melt(id_vars='brandname', 
                                             value_vars=hourly_sales.columns[1:], 
                                             var_name='hour', 
                                             value_name='total_selling_price')
         
         # Chart rendering for brand-wise analysis
         if chart_type_brands == "Line Chart":
-            fig_brands = px.line(hourly_sales_long, x='hour', y='total_selling_price', color='brandName',
+            fig_brands = px.line(hourly_sales_long, x='hour', y='total_selling_price', color='brandname',
                                 title="Brand-wise Hourly Sales",
                                 labels={'total_selling_price': 'Total Sales', 'hour': 'Hour'})
         elif chart_type_brands == "Bar Chart":
-            fig_brands = px.bar(hourly_sales_long, x='hour', y='total_selling_price', color='brandName',
+            fig_brands = px.bar(hourly_sales_long, x='hour', y='total_selling_price', color='brandname',
                                 title="Brand-wise Hourly Sales",
                                 labels={'total_selling_price': 'Total Sales', 'hour': 'Hour'})
         else:
-            fig_brands = px.area(hourly_sales_long, x='hour', y='total_selling_price', color='brandName',
+            fig_brands = px.area(hourly_sales_long, x='hour', y='total_selling_price', color='brandname',
                                 title="Brand-wise Hourly Sales",
                                 labels={'total_selling_price': 'Total Sales', 'hour': 'Hour'})
         

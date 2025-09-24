@@ -74,3 +74,4 @@ def category_breakdown_analysis(data, selected_brands):
                          title="Category Breakdown by Sales", color='categoryName', color_discrete_sequence=color_palette)
 
     st.plotly_chart(fig, use_container_width=True)
+

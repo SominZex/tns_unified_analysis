@@ -19,6 +19,12 @@ def weekly_sales_analysis(data, selected_categories_sidebar, top_categories, sel
         st.warning("No sales data available for the selected categories.")
         return
 
+    data['orderDate'] = pd.to_datetime(data['orderDate'], errors='coerce')
+    data = data.dropna(subset=['orderDate'])
+
+    # Convert start_date and end_date to pandas Timestamps
+    start_date = pd.to_datetime(start_date)
+    end_date = pd.to_datetime(end_date)
     # Apply date range filtering
     data = data[(data['orderDate'] >= start_date) & (data['orderDate'] <= end_date)]
 

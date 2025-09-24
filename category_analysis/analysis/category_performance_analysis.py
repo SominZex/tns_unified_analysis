@@ -15,7 +15,7 @@ def category_performance_analysis(filtered_data, selected_categories, selected_s
     overall_profit = overall_total_selling_price - overall_total_cost_price
 
     # Filter data for selected categories and stores
-    filtered_data = filtered_data[filtered_data['categoryName'].isin(selected_categories) & filtered_data['storeName'].isin(selected_stores)]
+    filtered_data = filtered_data[filtered_data['categoryName'].isin(selected_categories) & filtered_data['storename'].isin(selected_stores)]
 
     # Aggregate the data based on each unique categoryName and brandName
     aggregated_data = (
@@ -24,7 +24,7 @@ def category_performance_analysis(filtered_data, selected_categories, selected_s
             total_selling_price=('total_selling_price', 'sum'),
             total_cost_price=('total_cost_price', 'sum'),
             total_quantity=('quantity', 'sum'),
-            store_count=('storeName', 'nunique')
+            store_count=('storename', 'nunique')
         )
         .sort_values(by='total_selling_price', ascending=False)
     )
