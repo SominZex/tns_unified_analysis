@@ -146,25 +146,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Use cache to store uploaded data
-@st.cache_data
-def load_data(uploaded_file):
-    data = pd.read_csv(uploaded_file)
 
-    # Try parsing 'orderDate' explicitly in multiple formats
-    date_formats = ['%Y-%m-%d', '%d/%m/%Y', '%m/%d/%Y']
-    
-    for fmt in date_formats:
-        try:
-            data['orderDate'] = pd.to_datetime(data['orderDate'], format=fmt, errors='raise')
-            break  # Stop if parsing is successful
-        except ValueError:
-            continue
-    
-    # If all formats fail, fall back to automatic parsing
-    if not pd.api.types.is_datetime64_any_dtype(data['orderDate']):
-        data['orderDate'] = pd.to_datetime(data['orderDate'], dayfirst=True, errors='coerce')
+@st.cache_data(ttl=7200)
+def get_data():
+    return load_data_from_directory()
 
-    return data
+# Load data once
+if 'data' not in st.session_state:
+    with st.spinner('Loading data from database...'):
+        st.session_state.data = get_data()
+
+data = st.session_state.data
+
 
 def parse_time(time_str):
     """
@@ -183,25 +176,6 @@ def parse_time(time_str):
 
 if 'data' not in st.session_state:
     st.session_state.data = None
-if 'show_uploader' not in st.session_state:
-    st.session_state.show_uploader = True
-
-# File uploader
-if st.session_state.show_uploader:
-    uploaded_file = st.file_uploader("Upload CSV file", type="csv")
-    if uploaded_file is not None:
-        # Load the uploaded data
-        st.session_state.data = load_data(uploaded_file)
-        
-        # Parse the 'time' column with the new dynamic parsing
-        if 'time' in st.session_state.data.columns:
-            st.session_state.data['time'] = st.session_state.data['time'].apply(parse_time)
-        
-        st.session_state.show_uploader = False
-
-# Toggle button to show/hide the uploader
-if st.button("^"):
-    st.session_state.show_uploader = not st.session_state.show_uploader
 
 # Proceed only if data is loaded
 if st.session_state.data is not None:
@@ -277,7 +251,7 @@ if st.session_state.data is not None:
     # Create a DataFrame for store performance
     store_performance = pd.DataFrame({
         'storeName': [selected_store],
-        'averagetotalProductPrice': [selected_store_avg_sales],
+        'averageTotalProductPrice': [selected_store_avg_sales],
         'totalRevenue': [selected_store_total_revenue],
         'percentageDifference': [avg_difference_percentage],
         'overallAverage': [overall_avg_sales],
@@ -289,7 +263,7 @@ if st.session_state.data is not None:
     else:
         selected_store_percentage_contribution = 0
 
-    store_performance['performanceRating'] = store_performance['averagetotalProductPrice'].apply(performance_rating, overall_average=overall_avg_sales)
+    store_performance['performanceRating'] = store_performance['averageTotalProductPrice'].apply(performance_rating, overall_average=overall_avg_sales)
     # Create KPI Cards for key metrics
     st.markdown(f"<h2 style='color: green; text-align: center;'>{selected_store}</h2>", unsafe_allow_html=True)
     st.markdown(
